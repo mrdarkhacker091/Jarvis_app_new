@@ -1,0 +1,67 @@
+JARVIS AI — ANDROID COMPANION (native Kotlin source)
+=====================================================
+Files: 16
+Generated: 2026-10-14T07:04:36.339Z
+
+This is a real Android Studio project, not a WebView wrapper. Chat talks to the
+same secure Jarvis backend, speech uses the Android speech APIs, and every device
+action runs through an official Android API with its true result reported back.
+
+BUILD THE APK
+-------------
+1. Unzip this archive.
+2. Open the jarvis-ai-android folder in Android Studio (JDK 17), or run:
+     gradle wrapper --gradle-version 8.7
+     ./gradlew assembleDebug
+3. APK: app/build/outputs/apk/debug/app-debug.apk
+4. Install: adb install -r app/build/outputs/apk/debug/app-debug.apk
+   or copy the APK to the phone and open it.
+
+CONNECT IT
+----------
+1. Jarvis web dashboard -> API -> create an app API key.
+2. In the Android app open SETTINGS, paste the key, press SAVE KEY.
+3. The key is kept in EncryptedSharedPreferences on the device.
+
+DEFAULT ASSISTANT
+-----------------
+After installing, open Settings -> Apps -> Default apps -> Digital assistant and
+choose Jarvis AI. Availability depends on the Android version, the manufacturer
+(Infinix/Transsion builds vary) and system policy — installing the APK alone
+never replaces Google Assistant.
+
+NOT IMPLEMENTED (stated honestly inside the app)
+-----------------------------------------------
+- Always-on "Hey Jarvis" wake word. Voice input is push to talk, because Android
+  background microphone rules make always-on listening unreliable and costly.
+- Antivirus-style scanning: a normal Android app cannot read other apps' private
+  data, so the scan reviews permissions and security patch level and says so.
+- Toggling Wi-Fi, mobile data or GPS: Android forbids it for third-party apps, so
+  the app opens the relevant settings screen instead of pretending.
+
+STEPS
+-----
+1. Unzip the archive and open the jarvis-ai-android folder in Android Studio.
+2. Let Gradle sync, then run ./gradlew assembleDebug (JDK 17).
+3. Install app/build/outputs/apk/debug/app-debug.apk on the phone.
+4. Create an API key in the Jarvis dashboard → API, paste it in the app SETTINGS tab.
+5. Grant microphone and location permissions when the app asks.
+
+FILES
+-----
+- APK-BUILD.md
+- app/build.gradle.kts
+- app/src/main/AndroidManifest.xml
+- app/src/main/java/ai/jarvis/nexus/DeviceTools.kt
+- app/src/main/java/ai/jarvis/nexus/JarvisApi.kt
+- app/src/main/java/ai/jarvis/nexus/JarvisAssistantService.kt
+- app/src/main/java/ai/jarvis/nexus/MainActivity.kt
+- app/src/main/java/ai/jarvis/nexus/VoiceIo.kt
+- app/src/main/res/values/strings.xml
+- app/src/main/res/values/themes.xml
+- app/src/main/res/xml/voice_interaction.xml
+- build-apk-workflow.yml
+- build.gradle.kts
+- gradle.properties
+- README.md
+- settings.gradle.kts
